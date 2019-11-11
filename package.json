@@ -1,0 +1,28 @@
+{
+  "name": "tinto-express-server",
+  "version": "1.0.0",
+  "description": "express server for ideas dashboard",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node -r esm server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/websure/tinto-express-server.git"
+  },
+  "author": "suresh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/websure/tinto-express-server/issues"
+  },
+  "homepage": "https://github.com/websure/tinto-express-server#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "compression": "^1.7.4",
+    "esm": "^3.2.25",
+    "express": "^4.17.1",
+    "helmet": "^3.21.2",
+    "uuid": "^3.3.3"
+  }
+}

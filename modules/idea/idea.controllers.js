@@ -3,11 +3,10 @@ import Ideas from '../../Mock.json'
 
 var IdeasList = Ideas.data
 
-export function getIdeas(req,res,next){
-    console.log('getIdeas called')
+export function getIdeas(req,res,next){    
     try{
         res.status(200).json({
-            result:IdeasList,
+            result:IdeasList || [],
         })
         return next()
     }catch(e){
@@ -17,11 +16,11 @@ export function getIdeas(req,res,next){
 }
 
 export function deleteIdeas(req,res,next){
-    console.log('deleteIdeas called')
     try{
         if(!req.params.id){
             throw 'Idea id is missing'
         }
+        /* remove specific obj from ideas list */
         let updatedList = IdeasList.filter( val => val.id !== req.params.id)
         IdeasList = updatedList
         res.status(200).json({
@@ -36,7 +35,7 @@ export function deleteIdeas(req,res,next){
 
 export function addIdeas(req,res,next){
     try{
-        if(Object.keys(req.body).length < 1 ){
+        if(Object.keys(req.body.params).length < 1 ){
             throw 'idea details are missing'
         }
         let postObj = req.body.params
@@ -46,27 +45,27 @@ export function addIdeas(req,res,next){
             "title": postObj.title,
             "body": postObj.body
         }
-        console.log('before adding ', IdeasList)
+        /* adding newObj to ideasList */
         IdeasList = [newObj, ...IdeasList]
-        console.log('after adding ', IdeasList)
         res.status(200).json({
             ...newObj,
         })
         return next()
     } catch(error){
-        console.log('error in adding ideas to ', error)
+        console.log('error in adding ideas ', error)
         return res.status(500).json(error); 
     }
 }
 
 export function updateIdeas(req,res,next){
     try{
-        if(Object.keys(req.body).length < 1 ){
+        if(Object.keys(req.body.params).length < 1 ){
             throw 'idea details are missing'
         }
-        console.log('calling updateIdeas  ', req.body)
+        
         let currIdeaList = IdeasList
         let respObj={}
+        /* updating the specific idea object */
         currIdeaList.forEach( (val,i) =>{
             if(val.id === req.body.params.id){
                 let x =  req.body.params

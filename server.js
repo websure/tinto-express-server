@@ -12,4 +12,4 @@ app.get('/', function (req, res) {
 
 apiRoutes(app);
 
-app.listen(5000, () => console.log('Example app listening on port 5000!'))
+app.listen(5000, () => console.log('Express app listening on port 5000!'))
